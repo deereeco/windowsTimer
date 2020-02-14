@@ -1,21 +1,18 @@
-
 Dim objShell
 Set objShell = Wscript.CreateObject("WScript.Shell")
 
-dTimer=InputBox("Enter timer interval in minutes","Set Timer") 'minutes
+'user input
+dTimer=InputBox("Enter timer interval in minutes","Set Timer") 
 
 'error handling
 do until IsNumeric(dTimer)=True
-  dTimer=InputBox("Invalid Entry" & vbnewline & vbnewline & "Enter timer interval in minutes","Set Timer") 'minutes
-end do
+  dTimer=InputBox("Invalid Entry" & vbnewline & vbnewline & "Enter timer interval in minutes","Set Timer") 
+loop
 
-
-'mins = dTimer*60*1000 'convert from minutes to milliseconds
-WScript.Sleep dTimer
-
-t=MsgBox("Recharge." & vbnewline & vbnewline & vbnewline "Info about the timer?" , vbYesNo)
-
-if t=6 then 'if yes, show how long the timer was
-   MsgBox("The timer was " & dTimer & " long")
+'sleep, then notify user if they choose yes
+WScript.Sleep dTimer*60*1000 'convert from minutes to milliseconds
+t=MsgBox("Recharge."& vbnewline & vbnewline & vbnewline & vbnewline & vbnewline & "Info about the timer?", vbYesNo)
+if t=6 then 'if yes
+   MsgBox("The timer was " & dTimer & " minutes long")
 end if
-   
+
